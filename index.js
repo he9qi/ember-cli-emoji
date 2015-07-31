@@ -1,7 +1,6 @@
 /* jshint node: true */
 'use strict';
 
-var fs = require('fs');
 var path = require('path');
 
 var _emojiConfig = {};
@@ -79,11 +78,11 @@ module.exports = {
    * Import style depending on the *mode*. We currently support
    * `sprite` and `data-uri` modes (NO basic image mode).
    */
-  treeForStyles: function (name) {
+  treeForStyles: function () {
     var emojiDataURIPath = path.join(this.app.bowerDirectory,
           'emojify/dist/css/data-uri/emojify.css'),
         emojiSpritesPath = path.join(this.app.bowerDirectory,
-          'emojify/dist/css/sprites/emojify.css')
+          'emojify/dist/css/sprites/emojify.css');
 
     if (_emojiConfig.mode === 'data-uri') {
       this.app.import(emojiDataURIPath);
@@ -97,9 +96,7 @@ module.exports = {
    */
   contentFor: function (name) {
     if (name === 'body-footer') {
-      return '<script type="text/javascript">emojify.setConfig('
-        + JSON.stringify(_emojiConfig)
-        +')</script>';
+      return '<script type="text/javascript">emojify.setConfig(' + JSON.stringify(_emojiConfig) +')</script>';
     }
   }
 
