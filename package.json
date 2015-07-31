@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-emoji",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Emoji for Ember.",
   "directories": {
     "doc": "doc",
