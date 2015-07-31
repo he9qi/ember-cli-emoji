@@ -1,6 +1,7 @@
 # Emoji for Ember
 [![Code Climate][climate-badge]](climate-badge-url)
 [![Build Status][travis-badge]][travis-badge-url]
+[![Ember Observer][emberobserver-badge]][emberobserver-badge-url]
 
 
 This Ember CLI addon for [Emojify](http://hassankhan.me/emojify.js) provides `emoji-icon` helper and `emoji-tag` component to your app.
@@ -57,3 +58,5 @@ PRs welcome!
 [travis-badge-url]: https://travis-ci.org/he9qi/ember-cli-emoji
 [climate-badge]: https://codeclimate.com/github/he9qi/ember-cli-emoji/badges/gpa.svg
 [climate-badge-url]: https://codeclimate.com/github/he9qi/ember-cli-emoji
+[emberobserver-badge]: http://emberobserver.com/badges/ember-cli-emoji.svg
+[emberobserver-badge-url]: http://emberobserver.com/addons/ember-cli-emoji
