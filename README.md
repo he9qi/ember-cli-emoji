@@ -3,7 +3,7 @@
 [![Build Status][travis-badge]][travis-badge-url]
 
 
-This Ember CLI addon for [Emojify](http://hassankhan.me/emojify.js).
+This Ember CLI addon for [Emojify](http://hassankhan.me/emojify.js) provides `emoji-icon` helper and `emoji-tag` component to your app.
 
 
 ![Emojify Icons](https://cloud.githubusercontent.com/assets/29342/8999460/78e3c256-36ef-11e5-95a8-15a2cd82414c.jpg)
@@ -40,6 +40,7 @@ ENV.emoji = {
 ```handlebars
 {{emoji-icon 'smiley'}}
 ```
+It converts to `<span title=":smiley:" class="emoji emoji-smiley"></span>`
 
 ### Emoji Tag Usage
 ```handlebars
@@ -47,6 +48,7 @@ ENV.emoji = {
   Hello :smiley:
 {{/emoji-tag}}
 ```
+It converts content inside the `emoji-tag`, and detects content change then update emoji icons.
 
 ## Contributing
 PRs welcome!
