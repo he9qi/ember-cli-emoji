@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-emoji",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Emoji for Ember.",
   "directories": {
     "doc": "doc",
@@ -11,11 +11,14 @@
     "build": "ember build",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/he9qi/ember-cli-emoji.git"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Qi He <qhe@heyook.com> (https://github.com/he9qi)",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.2",
@@ -36,6 +39,7 @@
   },
   "keywords": [
     "ember-addon",
+    "ember-cli",
     "emoji",
     "emoticon",
     "emojify"
@@ -45,6 +49,7 @@
     "ember-cli-babel": "^5.0.0"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "defaultBlueprint": "emojify"
   }
 }

@@ -1,5 +1,5 @@
 module.exports = {
-  description: 'Emoji for Ember',
+  description: 'Emojify',
   normalizeEntityName: function() {},
 
   afterInstall: function() {
