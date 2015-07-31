@@ -1,0 +1,1 @@
+export { default } from 'ember-cli-emoji/components/emoji-tag';

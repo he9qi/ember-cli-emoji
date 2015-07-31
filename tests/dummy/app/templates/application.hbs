@@ -1,3 +1,9 @@
-<h2 id="title">Welcome to Ember.js</h2>
+{{emoji-icon 'smiley'}}
+{{emoji-icon 'frog'}}
+{{#emoji-tag}}
+  Hello :smiley:
+{{/emoji-tag}}
 
-{{outlet}}
+{{#emoji-tag}}
+  Hello :frog:
+{{/emoji-tag}}
