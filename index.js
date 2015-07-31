@@ -20,6 +20,10 @@ var _defaultEmojiConfig = {
 module.exports = {
   name: 'ember-cli-emoji',
 
+  /**
+   * Import javascript depending on the *mode*. We currently support
+   * `sprite` and `data-uri` modes (NO basic image mode).
+   */
   included: function(app, parentAddon) {
     this._super.included(app);
 
@@ -41,6 +45,9 @@ module.exports = {
 
   },
 
+  /**
+   * Allows custom configuration from `environment`
+   */
   config: function (environment, baseConfig) {
     if ('emoji' in baseConfig) {
       if (!baseConfig.emoji) {
@@ -68,6 +75,10 @@ module.exports = {
     };
   },
 
+  /**
+   * Import style depending on the *mode*. We currently support
+   * `sprite` and `data-uri` modes (NO basic image mode).
+   */
   treeForStyles: function (name) {
     var emojiDataURIPath = path.join(this.app.bowerDirectory,
           'emojify/dist/css/data-uri/emojify.css'),
@@ -81,6 +92,9 @@ module.exports = {
     }
   },
 
+  /**
+   * Setup `emojify` configuration inline
+   */
   contentFor: function (name) {
     if (name === 'body-footer') {
       return '<script type="text/javascript">emojify.setConfig('

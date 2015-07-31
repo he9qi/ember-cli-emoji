@@ -1,25 +1,57 @@
-# Ember-cli-emoji
+# Emoji for Ember
+[![Code Climate][climate-badge]](climate-badge-url)
+[![Build Status][travis-badge]][travis-badge-url]
 
-This README outlines the details of collaborating on this Ember addon.
+
+This Ember CLI addon for [Emojify](http://hassankhan.me/emojify.js).
+
+
+![Emojify Icons](https://cloud.githubusercontent.com/assets/29342/8999460/78e3c256-36ef-11e5-95a8-15a2cd82414c.jpg)
+
 
 ## Installation
+```sh
+ember install ember-cli-emoji
+```
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+## Setup
+Add your *Emoji* configuration to your app's config
 
-## Running
+```javascript
+// default config
+mode: 'sprites',
+tag_type: 'span',
+img_dir: 'images/emoji',
+ignore_emoticons: false,
+blacklist: {
+  elements: ['script', 'textarea', 'a', 'pre', 'code'],
+  classes: ['no-emojify']
+}
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+// config/environment.js
+ENV.emoji = {
+  tag_name: "div"
+};
+```
 
-## Running Tests
+## Usage
 
-* `ember test`
-* `ember test --server`
+### Emoji Icon Helper Usage
+```handlebars
+{{emoji-icon 'smiley'}}
+```
 
-## Building
+### Emoji Tag Usage
+```handlebars
+{{#emoji-tag}}
+  Hello :smiley:
+{{/emoji-tag}}
+```
 
-* `ember build`
+## Contributing
+PRs welcome!
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+[travis-badge]: https://travis-ci.org/he9qi/ember-cli-emoji.svg
+[travis-badge-url]: https://travis-ci.org/he9qi/ember-cli-emoji
+[climate-badge]: https://codeclimate.com/github/he9qi/ember-cli-emoji/badges/gpa.svg
+[climate-badge-url]: https://codeclimate.com/github/he9qi/ember-cli-emoji
