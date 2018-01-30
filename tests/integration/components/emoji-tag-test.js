@@ -1,7 +1,6 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-
 
 moduleForComponent('emoji-tag', 'Integration | Component | emoji tag', {
   integration: true
@@ -29,7 +28,7 @@ test('it detects changes', function(assert) {
     {{/emoji-tag}}
   `);
 
-  Ember.run(this, function() {
+  run(this, function() {
     this.$('.emoji-tag:first').text(':frog:');
   });
 
