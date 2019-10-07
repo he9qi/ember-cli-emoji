@@ -13,26 +13,28 @@ export default Component.extend({
   /**
    * Schedule `emojify` during run loop
    */
-  scheduleEmojify: function() {
-    once(this, function() {
-      emojify.run();
-    });
+  scheduleEmojify () {
+    once(this, this.runEmojify);
+  },
+
+  runEmojify () {
+    emojify.run();
   },
 
   /**
    * Schedule `emojify` after render
    */
-  didInsertElement: function() {
+  didInsertElement () {
     this._super();
+    this.scheduleEmojify = this.scheduleEmojify.bind(this);
     return scheduleOnce('afterRender', this, this.afterRenderEvent);
   },
 
   /**
    * Run `emojify` and schedule `emojify` whenever content changes
    */
-  afterRenderEvent: function() {
-    emojify.run();
-    this.$().bind("DOMSubtreeModified", this.scheduleEmojify);
+  afterRenderEvent () {
+    this.runEmojify();
+    this.element.addEventListener("DOMSubtreeModified", this.scheduleEmojify);
   }
-
 });

@@ -1,12 +1,9 @@
-import Ember from 'ember';
 import { typeOf } from '@ember/utils';
 import { isArray } from '@ember/array';
 import { htmlSafe } from '@ember/string';
 import { helper } from '@ember/component/helper';
 
 const EMOJI_PREFIX = /^emoji-.+/;
-
-const warn = Ember.Logger.warn;
 
 /**
  * Handlebars helper for generating HTML that renders a Emoji icon.
@@ -21,7 +18,7 @@ var emojiIcon = function emojiIcon(name, {
 } = {}) {
   if (typeOf(name) !== 'string') {
     const message = "emoji-icon: no icon specified";
-    warn(message);
+    console.warn(message);
     return htmlSafe(message);
   }
 
