@@ -21,7 +21,6 @@
   "dependencies": {
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
-    "ember-cli": "~2.18.1",
     "ember-cli-babel": "^6.6.0",
     "ember-cli-dependency-checker": "^2.0.0",
     "ember-cli-eslint": "^4.2.1",
@@ -41,6 +40,7 @@
     "loader.js": "^4.2.3"
   },
   "devDependencies": {
+    "ember-cli": "~2.18.1",
     "ember-cli-uglify": "^2.0.0",
     "eslint-plugin-ember": "^5.0.3",
     "eslint-plugin-node": "^5.2.1"
