@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { scheduleOnce, once } from '@ember/runloop';
 import layout from '../templates/components/emoji-tag';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout: layout,
 
   /**
@@ -12,26 +13,28 @@ export default Ember.Component.extend({
   /**
    * Schedule `emojify` during run loop
    */
-  scheduleEmojify: function() {
-    Ember.run.once(this, function() {
-      emojify.run();
-    });
+  scheduleEmojify () {
+    once(this, this.runEmojify);
+  },
+
+  runEmojify () {
+    emojify.run();
   },
 
   /**
    * Schedule `emojify` after render
    */
-  didInsertElement: function() {
+  didInsertElement () {
     this._super();
-    return Ember.run.scheduleOnce('afterRender', this, this.afterRenderEvent);
+    this.scheduleEmojify = this.scheduleEmojify.bind(this);
+    return scheduleOnce('afterRender', this, this.afterRenderEvent);
   },
 
   /**
    * Run `emojify` and schedule `emojify` whenever content changes
    */
-  afterRenderEvent: function() {
-    emojify.run();
-    this.$().bind("DOMSubtreeModified", this.scheduleEmojify);
+  afterRenderEvent () {
+    this.runEmojify();
+    this.element.addEventListener("DOMSubtreeModified", this.scheduleEmojify);
   }
-
 });

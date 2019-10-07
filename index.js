@@ -1,7 +1,8 @@
 /* jshint node: true */
 'use strict';
 
-var path = require('path');
+const path = require('path'),
+      resolve = require('resolve').sync;
 
 var _emojiConfig = {};
 var _defaultEmojiConfig = {
@@ -15,6 +16,15 @@ var _defaultEmojiConfig = {
   }
 };
 
+function getEmojify(target) {
+  const basedir = (target.project || {}).root,
+        main = resolve('emojify.js', { basedir });
+
+  return {
+    main,
+    emojifyRoot: (/.*\/emojify\.js\//i.exec(main)[0] || '').replace(basedir + '/', '')
+  }
+}
 
 module.exports = {
   name: 'ember-cli-emoji',
@@ -23,31 +33,28 @@ module.exports = {
    * Import javascript depending on the *mode*. We currently support
    * `sprite` and `data-uri` modes (NO basic image mode).
    */
-  included: function(app, parentAddon) {
+  included (app, parentAddon) {
     this._super.included(app);
 
-    var target = (parentAddon || app);
+    const target = parentAddon || app,
+          { main, emojifyRoot } = getEmojify(target);
 
-    target.import(target.bowerDirectory + '/emojify/dist/js/emojify.js');
+    // emojify entry point (dist/js/emojify.js)
+    target.import(main);
 
     if (_emojiConfig.mode === 'sprites') {
-      var destSpriteDir = 'images/sprites';
-      var spritePath    = '/emojify/dist/images/sprites/';
+      const destDir = 'images/sprites',
+            spritePath = path.join(emojifyRoot, 'dist/images/sprites/');
 
-      target.import(target.bowerDirectory + spritePath + 'emojify.png', {
-        destDir: destSpriteDir
-      });
-      target.import(target.bowerDirectory + spritePath + 'emojify@2x.png', {
-        destDir: destSpriteDir
-      });
+      target.import(path.join(spritePath, 'emojify.png'), { destDir });
+      target.import(path.join(spritePath, 'emojify@2x.png'), { destDir });
     }
-
   },
 
   /**
    * Allows custom configuration from `environment`
    */
-  config: function (environment, baseConfig) {
+  config (environment, baseConfig) {
     if ('emoji' in baseConfig) {
       if (!baseConfig.emoji) {
         _emojiConfig = false;
@@ -78,26 +85,19 @@ module.exports = {
    * Import style depending on the *mode*. We currently support
    * `sprite` and `data-uri` modes (NO basic image mode).
    */
-  treeForStyles: function () {
-    var emojiDataURIPath = path.join(this.app.bowerDirectory,
-          'emojify/dist/css/data-uri/emojify.css'),
-        emojiSpritesPath = path.join(this.app.bowerDirectory,
-          'emojify/dist/css/sprites/emojify.css');
+  treeForStyles () {
+    const { emojifyRoot } = getEmojify(this.app),
+          mode = _emojiConfig.mode === 'data-uri' ? 'data-uri' : 'sprites';
 
-    if (_emojiConfig.mode === 'data-uri') {
-      this.app.import(emojiDataURIPath);
-    } else {
-      this.app.import(emojiSpritesPath);
-    }
+    this.app.import(path.join(emojifyRoot, 'dist/css', mode, 'emojify.css'));
   },
 
   /**
    * Setup `emojify` configuration inline
    */
-  contentFor: function (name) {
+  contentFor (name) {
     if (name === 'body-footer') {
       return '<script type="text/javascript">emojify.setConfig(' + JSON.stringify(_emojiConfig) +')</script>';
     }
   }
-
 };

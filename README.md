@@ -60,3 +60,15 @@ PRs welcome!
 [climate-badge-url]: https://codeclimate.com/github/he9qi/ember-cli-emoji
 [emberobserver-badge]: http://emberobserver.com/badges/ember-cli-emoji.svg
 [emberobserver-badge-url]: http://emberobserver.com/addons/ember-cli-emoji
+
+
+Contributing
+------------------------------------------------------------------------------
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
+
+
+License
+------------------------------------------------------------------------------
+
+This project is licensed under the [MIT License](LICENSE.md).
